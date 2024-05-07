@@ -1,0 +1,71 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+
+
+void skaitymas(int &n, int u[]);
+void tinka(int n, int u[], int &suma);
+void vidurkis(double &vid, int suma1, int u[], int suma,int n);
+void rezultatas(int suma, int u[],int n,double vid);
+
+int main()
+{
+	int n, u[100],suma=0,suma1=0;
+	double vid;
+
+	skaitymas(n,u);
+	tinka(n,u,suma);
+	vidurkis(vid,suma1,u,suma,n);
+	rezultatas(suma,u,n,vid);
+
+	return 0;
+
+	
+}
+
+
+void skaitymas(int &n,int u[]) {
+	ifstream in("duomenys.txt");
+	in >> n;
+	for (int i = 0; i < n; i++) {
+		in >>u[i];
+	}
+	in.close();
+}
+
+void tinka(int n, int u[], int& suma) {
+	for (int i = 0; i < n; i++) {
+		if (u[i] > 175) { suma++; }
+
+	}
+}
+
+void vidurkis(double& vid, int suma1, int u[], int suma,int n) {
+	for (int i = 0; i < n; i++) {
+		if (u[i] > 175) {
+			suma1 += u[i];
+		}
+	}
+	vid = suma1 * 1.0 / suma;
+}
+
+void rezultatas(int suma,int u[],int n,double vid) {
+	ofstream out("Rez.txt");
+	out << suma << endl;
+	for (int i = 0; i < n; ++i) {
+		if (u[i] > 175) {
+			out << u[i] << ' ';
+			
+		}
+		
+}
+	out <<'\n';
+	out << vid;
+	out.close();
+}
+
+
+	
+
