@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+
+
+
+void skaitymas(int& a, int& b, int U[]);
+
+void rezultatas(int a, int b, int U[]);
+
+int main()
+{
+	
+	int a, b, U[100];
+
+	skaitymas(a,b,U);
+	rezultatas(a,b, U);
+
+	return 0;
+}
+
+void skaitymas(int &a,int &b,int U[]) {
+	ifstream in("duomenys.txt");
+	in >> a;
+	in >> b;
+	for (int i = 0; i < b;i++) {
+		in >> U[i];
+	}
+	in.close();
+}
+
+void rezultatas(int a,int b,int U[]) {
+	ofstream out("Rez.txt");
+	for (int i = 0; i < b; i++) {
+		if (a < U[i]) {
+			out << U[i] << ' ';;
+		}
+	}
+	out.close();
+
+}
