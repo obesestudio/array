@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+
+
+
+void skaitymas();
+void rezultatas();
+
+int main()
+{
+	skaitymas();
+	rezultatas();
+
+	return 0;
+}
+
+void skaitymas() {
+	ifstream in("duomenys.txt");
+	
+	in.close();
+}
+
+void rezultatas() {
+	ofstream out("Rez.txt");
+
+	out.close();
+
+}
