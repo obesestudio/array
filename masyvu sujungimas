@@ -1,0 +1,63 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+
+
+
+void skaitymas(int &a, int &b, int V[], int D[]);
+void k1(int a, int B[], int V[]);
+void k2(int a, int b, int B[], int D[]);
+void sort0(int B[], int a, int b);
+void rezultatas(int a, int b, int B[]);
+
+int main()
+{
+	int a, b, V[100], D[100], B[100];
+
+
+	skaitymas(a,b,V,D);
+	k1(a,B,V);
+	k2(a,b,B,D);
+	sort0(B,a,b);
+	rezultatas(a,b,B);
+
+	return 0;
+}
+
+void skaitymas(int &a, int &b,int V[],int D[]) {
+	ifstream in("duomenys.txt");
+	in >> a;
+	for (int i = 0; i < a;i++) {
+		in >> V[i];
+	}
+	in >> b;
+	for (int i = 0; i <b; i++) {
+		in >> D[i];
+	}
+	in.close();
+}
+void k1(int a, int B[],int V[]) {
+	for (int i = 0; i < a; i++) {
+		B[i] = V[i];
+	}
+}
+void k2(int a,int b,int B[], int D[]) {
+	for (int i = 0; i < b; i++) {
+		B[a+i] = D[i];
+	}
+}
+void sort0(int B[],int a, int b) {
+	sort(B, B + (a+b),greater<int>());
+}
+void rezultatas(int a, int b,int B[]) {
+	ofstream out("Rez.txt");
+	for (int i = 0; i < (a+b); i++) {
+		out << B[i] << " ";
+	}
+	out.close();
+
+}
