@@ -1,0 +1,66 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+
+
+void skaitymas(string &klase, int &n, int u[]);
+void eile(int u[], int n);
+void vidurkis(int &n, int &suma, double &vid, int u[]);
+void rezultatas(int u[], int n,double vid);
+
+int main()
+{
+	int n, u[100],suma=0;
+	string klase;
+	double vid;
+
+	skaitymas(klase, n, u);
+	eile(u,n);
+	vidurkis(n,suma,vid,u);
+	rezultatas(u,n,vid);
+	return 0;
+
+	
+}
+
+
+void skaitymas(string &klase,int &n,int u[]) {
+	ifstream in("duomenys.txt");
+	in >> klase;
+	in >> n;
+	for (int i = 0; i < n; i++) {
+		in >>u[i];
+	}
+	in.close();
+}
+void eile(int u[], int n) {
+	sort(u, u + n);
+
+}
+
+void vidurkis(int &n, int &suma,double &vid,int u[]) {
+	for (int i = 0; i < n; i++) {
+		suma += u[i];
+	}
+	vid = suma*1.0/n;
+
+}
+
+void rezultatas(int u[],int n,double vid) {
+	ofstream out("Rez.txt");
+	for (int i = 0; i < n; i++) {
+		out << u[i] << ' ';
+	}
+	out << ' ' << endl;
+	out <<setprecision(1)<<fixed<< vid;
+	out.close();
+}
+
+
+	
+
