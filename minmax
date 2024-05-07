@@ -1,0 +1,58 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace std;
+
+
+
+void skaitymas(int& n, int t[]);
+void vidurkis(int n, int t[], double& vid, int suma);
+void minmax(int n, int t[], int &min, int &max);
+void rezultatas(int n, int t[], int min, int max, double vid);
+
+int main()
+{
+	int n, t[100], suma = 0,min,max;
+	double vid;
+	
+
+	skaitymas(n, t);
+	vidurkis(n, t, vid, suma);
+	minmax(n, t, min, max);
+	rezultatas(n, t, min, max, vid);
+
+	return 0;
+}
+
+void skaitymas(int& n, int t[]) {
+	ifstream in("duomenys.txt");
+	in >> n;
+	for (int i = 0; i < n; i++) {
+		in >> t[i];
+	}
+	in.close();
+}
+void vidurkis(int n, int t[], double& vid, int suma) {
+	for (int i = 0; i < n; i++) {
+		suma += t[i];
+	}
+	vid = suma * 1.0 / n;
+}
+void minmax(int n, int t[], int &min, int &max) {
+	min = t[0];
+	max = t[0];
+	for (int i = 0; i < n; i++) {
+		if (min > t[i]) { min = t[i]; }
+		if (max < t[i]) { max = t[i]; }
+	}
+}
+void rezultatas(int n, int t[], int min, int max, double vid) {
+	ofstream out("Rez.txt");
+	for (int i = 0; i < n; i++) {
+		out << i + 1 << '-' << t[i] << endl;
+	}
+	out << setprecision(2) << fixed << vid << endl;
+	out << min << endl;
+	out << max << endl;
+
+}
